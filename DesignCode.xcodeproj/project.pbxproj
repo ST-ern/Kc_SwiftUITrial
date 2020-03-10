@@ -16,6 +16,9 @@
 		3839535B24127E32009CEB64 /* DesignCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3839535A24127E32009CEB64 /* DesignCodeTests.swift */; };
 		3839536624127E32009CEB64 /* DesignCodeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3839536524127E32009CEB64 /* DesignCodeUITests.swift */; };
 		38A8FAA8241623B30029226C /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A8FAA7241623B30029226C /* Home.swift */; };
+		38DDBF7924178DCB007056F5 /* HomeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DDBF7824178DCB007056F5 /* HomeList.swift */; };
+		38DDBF7B2417C8FD007056F5 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DDBF7A2417C8FD007056F5 /* BlurView.swift */; };
+		38DDBF7D2417CDD2007056F5 /* UpdateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DDBF7C2417CDD2007056F5 /* UpdateList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		3839536524127E32009CEB64 /* DesignCodeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignCodeUITests.swift; sourceTree = "<group>"; };
 		3839536724127E32009CEB64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38A8FAA7241623B30029226C /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		38DDBF7824178DCB007056F5 /* HomeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeList.swift; sourceTree = "<group>"; };
+		38DDBF7A2417C8FD007056F5 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		38DDBF7C2417CDD2007056F5 /* UpdateList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +111,9 @@
 				3839534524127E30009CEB64 /* SceneDelegate.swift */,
 				3839534724127E30009CEB64 /* ContentView.swift */,
 				38A8FAA7241623B30029226C /* Home.swift */,
+				38DDBF7824178DCB007056F5 /* HomeList.swift */,
+				38DDBF7C2417CDD2007056F5 /* UpdateList.swift */,
+				38DDBF7A2417C8FD007056F5 /* BlurView.swift */,
 				3839534924127E31009CEB64 /* Assets.xcassets */,
 				3839534E24127E32009CEB64 /* LaunchScreen.storyboard */,
 				3839535124127E32009CEB64 /* Info.plist */,
@@ -271,9 +280,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3839534424127E30009CEB64 /* AppDelegate.swift in Sources */,
+				38DDBF7D2417CDD2007056F5 /* UpdateList.swift in Sources */,
+				38DDBF7924178DCB007056F5 /* HomeList.swift in Sources */,
 				3839534624127E30009CEB64 /* SceneDelegate.swift in Sources */,
 				38A8FAA8241623B30029226C /* Home.swift in Sources */,
 				3839534824127E30009CEB64 /* ContentView.swift in Sources */,
+				38DDBF7B2417C8FD007056F5 /* BlurView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

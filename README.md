@@ -1,4 +1,5 @@
 # SwiftUI Learning
+
 A trial of swiftUI, following dlgchg's video.
 
 Xcode Version 11.3.1 (11C504)
@@ -248,7 +249,6 @@ Xcode Version 11.3.1 (11C504)
          }
          Spacer()
      }
-     
      ```
 
 
@@ -267,7 +267,6 @@ Xcode Version 11.3.1 (11C504)
          @Binding var show: Bool
          ...
      }
-     
      ```
 
    - then go to main struct, add var which need to pass where you use the subtract, like:
@@ -276,7 +275,6 @@ Xcode Version 11.3.1 (11C504)
      @State var show = false
      ...
      MenuView(show: $show) // remember the '$' char
-     
      ```
 
      it seems like reference in c++, which can pass the change of var.
@@ -298,7 +296,6 @@ Xcode Version 11.3.1 (11C504)
    .background(Color.white)
    .cornerRadius(30)
    .shadow(color: Color("buttonShadow"), radius: 10, x: 0, y: 10)// y make it like foating
-   
    ```
 
 2. mutiple screen
@@ -336,7 +333,6 @@ Xcode Version 11.3.1 (11C504)
            .shadow(color: Color("backgroundShadow4"), radius: 20, x: 0, y: 20)
        }
    }
-   
    ```
 
 2. put in into a recycle to multiple it:
@@ -345,7 +341,6 @@ Xcode Version 11.3.1 (11C504)
    ForEach(0 ..< 3) { item in
    	CourseView()
    }
-   
    ```
 
 3. put it into a stack (`HStack`/`VStack` to scroll horizontal/vertical), then embed in `ScrollView` (`embed in Group` and change name).
@@ -360,7 +355,6 @@ Xcode Version 11.3.1 (11C504)
            }
        }.padding(.bottom, 50)  // to make shadows not be cut, make stack's padding
    }
-   
    ```
 
 
@@ -382,7 +376,6 @@ Xcode Version 11.3.1 (11C504)
          .aspectRatio(contentMode: .fit)  //!
          .frame(width: 246.0, height: 150.0)  // make a frame to surance max size
          .padding(.bottom, 30)  // bottom padding to align
-     
      ```
 
    - if there is any text align problems, remember that **better not set frame to text**, but  use **padding** to align (left and right). (because of the text content will cause different align effect while using frame).
@@ -417,14 +410,12 @@ Xcode Version 11.3.1 (11C504)
        func updateUIView(_ uiView: UIView, 
                          context: UIViewRepresentableContext<BlurView>) { }   
    }
-   
    ```
 
 2. then just add `BlurView` into your view, with attributes `.dark`, `.light`, `.extralight`
 
    ```swift
    BlurView(style: .extraLight)
-   
    ```
 
 3. you can also use `.blur(radius: Double)` to make blur, but whis will make a **whole stack** bacome blur, can fulfill the blur *layer* effect.
@@ -457,7 +448,6 @@ Xcode Version 11.3.1 (11C504)
        .navigationBarTitle(Text("Updates"))  // navigation list's title (also back button after click into certain line)
        .navigationBarItems(trailing: EditButton() )  // other title items (like buttons)
    }
-   
    ```
 
    
@@ -481,7 +471,6 @@ Xcode Version 11.3.1 (11C504)
              ......
          }
      }
-     
      ```
 
      the `UpdateDetail` struct can receive attributes when used.
@@ -497,7 +486,6 @@ Xcode Version 11.3.1 (11C504)
                          ...
          }
      }
-     
      ```
 
 
@@ -520,7 +508,6 @@ Xcode Version 11.3.1 (11C504)
            self.updates = updates
        }
    }
-   
    ```
 
    then class `UpdateStore` is just like variable store in backend.
@@ -529,7 +516,6 @@ Xcode Version 11.3.1 (11C504)
 
    ```swift
    @ObservedObject var store = UpdateStore(updates: updateDate) // dynamic value
-   
    ```
 
    then you can change the static list value in `ForEach` function to `store.updates`.
@@ -546,7 +532,6 @@ Xcode Version 11.3.1 (11C504)
      Button(action: addUpdate) {
          Text("Add Update")
      }
-     
      ```
 
    - other function, make sure in `ForEach` logic.
@@ -557,7 +542,6 @@ Xcode Version 11.3.1 (11C504)
      .onDelete { indexSet in  // reflect a line in list
          self.store.updates.remove(at: indexSet.first!) // don't forget '!'
      }
-     
      ```
 
    - move: add `onMove` function bind to a function you write.
@@ -569,14 +553,12 @@ Xcode Version 11.3.1 (11C504)
      }
      ...
      .onMove(perform: move)
-     
      ```
 
    - order: simply write a `EditButton` behind the `}` of `List`.
 
      ```swift
      .navigationBarItems(trailing: EditButton() )
-     
      ```
 
    
@@ -609,7 +591,6 @@ Xcode Version 11.3.1 (11C504)
          }
          .tag(3)
      }
-     
      ```
 
    - then find `rootViewController` in `SceneDelegate.swift`, change the `rootView:` to tab view. 
@@ -682,8 +663,34 @@ NavigationView {
             }
         .navigationBarTitle("Settings")  // navigation title
         }
-
 ```
 
 9. how to add code & var in string : use `\()`, then add code & var between `(` and `)`.
 
+
+
+
+
+#### 20. Scroll Animation
+
+1. to make scroll animation, let is rotate3d dynamically, use `GeometryReader`.
+
+   (not very know each numbers' means)
+
+   ```swift
+   GeometryReader { geometry in // to make it animate with position change (under cycle)
+   	CourseView(title: item.title,
+                         image: item.image,
+                         color: item.color,
+                         shadowColor: item.shadowColor
+       )
+       .rotation3DEffect(Angle(degrees: Double(geometry.frame(in: .global).minX - 40) / -20), axis: (x: 0, y: 10.0, z: 0))  // this make card rotation, change numbers to see the effect
+   }
+   ```
+
+
+
+#### 21. Adapting for iPad
+
+1. multiple previews: in `_Preview` struct, make view into a group, and then add `.previewDevice("iPhone SE")` behind it. (can try different device).
+2. use `.edgesIgnoringSafeArea( )` to adjust edge margin.

@@ -18,7 +18,7 @@ struct ContentView: View {
             
 //            HomeList()
             
-            BlurView(style: .extraLight)
+            BlurView(style: .systemMaterial)
             
             TitleView()
                 .blur(radius: show ? 20 : 0)
@@ -157,7 +157,7 @@ struct CardBottomView: View {
         .frame(minWidth: 0, maxWidth: .infinity)
         .padding()
         .padding(.horizontal)
-        .background(/*@START_MENU_TOKEN@*/Color.white/*@END_MENU_TOKEN@*/)
+        .background(BlurView(style: .systemMaterial))
         .cornerRadius(30)
         .shadow(radius: 20)
         .offset(y:600)

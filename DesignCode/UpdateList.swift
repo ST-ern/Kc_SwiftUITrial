@@ -9,31 +9,68 @@
 import SwiftUI
 
 struct UpdateList: View {
-    var updates = updateDate
+    var updates = updateDate //static value
+    @ObservedObject var store = UpdateStore(updates: updateDate) // dynamic value
+    
+    
+    func addUpdate() {
+        store.updates.append(Update(image: "Certificate1", title: "New Title", text: "New Text", date: "JUN 1"))
+    }
+    
+    func move(from source: IndexSet, to destination: Int) {
+        #warning("not use swap!!! crash!!!")
+        store.updates.move(fromOffsets: source, toOffset: destination)
+    }
+    
     
     var body: some View {
         NavigationView {
-            List(updates) { item in
-                NavigationLink(destination: Text("1")) {
-                    VStack(alignment: .leading) {
-                        Text(item.title)
-                            .font(.headline)
-                        Text(item.text)
-                            .font(.subheadline)
-                            .lineLimit(2)
-                            .frame(height: 50.0)
-                            .lineSpacing(4)
-                        Text(item.date)
-                            .font(.caption)
-                            .fontWeight(.bold)
-                            .foregroundColor(Color.gray)
-                    }
+            VStack {
+                Button(action: addUpdate) {
+                    Text("Add Update")
                 }
+                
+                List {
+                    ForEach(store.updates) { item in
+                        NavigationLink(destination: UpdateDetail(title: item.title,
+                                                                 text: item.text,
+                                                                 image: item.image)) {
+                            HStack(spacing: 12.0) {
+                                Image(item.image)
+                                .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 80.0, height: 80.0)
+                                .background(Color("background"))
+                                .cornerRadius(20)
+                                
+                                VStack(alignment: .leading) {
+                                    Text(item.title)
+                                        .font(.headline)
+                                    Text(item.text)
+                                        .font(.subheadline)
+                                        .lineLimit(2)
+                                        .frame(height: 50.0)
+                                        .lineSpacing(4)
+                                    Text(item.date)
+                                        .font(.caption)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(Color.gray)
+                                }
+                            }
+                        }
+                        .padding(.vertical, 8.0)
+                        
+                    }
+                    .onDelete { indexSet in
+                        self.store.updates.remove(at: indexSet.first!)
+                    }
+                    .onMove(perform: move)
+                }
+                .navigationBarTitle(Text("Updates"))
+                .navigationBarItems(trailing:
+                    EditButton()
+                )
             }
-            .navigationBarTitle(Text("Updates"))
-            .navigationBarItems(trailing:
-                EditButton()
-            )
         }
     }
 }
